@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cpu, ShieldCheck, Zap, Disc3, Gauge, Flame, Sparkles } from 'lucide-react';
+import { Cpu, ShieldCheck, Zap, Gauge, Flame, Sparkles } from 'lucide-react';
 import { LIVERIES } from './Navbar';
 
 export default function SpecsSection({ currentLivery, setCurrentLivery }) {
@@ -12,7 +12,7 @@ export default function SpecsSection({ currentLivery, setCurrentLivery }) {
 
   return (
     <section id="specs-section" className="relative z-30 max-w-7xl mx-auto px-4 sm:px-8 py-16">
-      {/* Section Header */}
+      {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-cyber-yellow mb-3">
           <Cpu className="w-3.5 h-3.5" />
@@ -26,7 +26,7 @@ export default function SpecsSection({ currentLivery, setCurrentLivery }) {
         </p>
       </div>
 
-      {/* Grid of specs */}
+      {/* Specifications grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
         {specs.map((spec, i) => {
           const Icon = spec.icon;
@@ -54,7 +54,7 @@ export default function SpecsSection({ currentLivery, setCurrentLivery }) {
         })}
       </div>
 
-      {/* Interactive Livery Customizer Studio */}
+      {/* Car color studio */}
       <div className="glass-panel rounded-3xl p-8 border border-white/10 bg-gradient-to-br from-asphalt-900 to-black overflow-hidden relative">
         <div className="absolute top-0 right-0 w-96 h-96 bg-cyber-lime/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -92,7 +92,7 @@ export default function SpecsSection({ currentLivery, setCurrentLivery }) {
             </div>
           </div>
 
-          {/* Large Preview of the vehicle in selected color */}
+          {/* Vehicle preview */}
           <div className="w-full lg:w-1/2 flex flex-col items-center justify-center p-6 bg-black/40 rounded-2xl border border-white/5">
             <img
               src="./mclaren.png"

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Volume2, VolumeX, Sparkles, Gauge, Compass } from 'lucide-react';
-import { soundEngine } from '../utils/soundEngine';
+import { Gauge } from 'lucide-react';
 
+// Available car colors
 export const LIVERIES = [
   { id: 'orange', name: 'Papaya Spark', filter: 'none', color: '#fa7328' },
   { id: 'lime', name: 'Cyber Lime', filter: 'hue-rotate(90deg) saturate(1.4)', color: '#45db7d' },
@@ -10,20 +10,8 @@ export const LIVERIES = [
   { id: 'stealth', name: 'Obsidian Stealth', filter: 'grayscale(1) brightness(0.65) contrast(1.3)', color: '#71717a' },
 ];
 
-export default function Navbar({
-  currentLivery,
-  setCurrentLivery,
-  soundEnabled,
-  setSoundEnabled,
-  currentSpeed,
-  scrollProgress
-}) {
-  const toggleSound = () => {
-    const newState = !soundEnabled;
-    setSoundEnabled(newState);
-    soundEngine.toggle(newState);
-  };
-
+export default function Navbar({ currentLivery, setCurrentLivery, currentSpeed }) {
+  // Smooth scroll to sections
   const scrollToHero = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -41,8 +29,8 @@ export default function Navbar({
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-3.5 transition-all duration-300">
       <div className="max-w-7xl mx-auto glass-panel rounded-2xl px-4 sm:px-6 py-2.5 flex items-center justify-between shadow-2xl border border-white/10">
-        {/* Brand identity */}
-        <div 
+        {/* Brand logo */}
+        <div
           onClick={scrollToHero}
           className="flex items-center gap-3 cursor-pointer group"
         >
@@ -66,21 +54,21 @@ export default function Navbar({
           </div>
         </div>
 
-        {/* Navigation Links (Desktop) */}
+        {/* Navigation links */}
         <nav className="hidden md:flex items-center gap-1 font-mono text-xs text-zinc-400">
-          <button 
+          <button
             onClick={scrollToHero}
             className="px-3 py-1.5 rounded-lg hover:text-white hover:bg-white/5 transition-all"
           >
             01 // HERO TRACK
           </button>
-          <button 
+          <button
             onClick={scrollToTelemetry}
             className="px-3 py-1.5 rounded-lg hover:text-white hover:bg-white/5 transition-all"
           >
             02 // TELEMETRY
           </button>
-          <button 
+          <button
             onClick={scrollToSpecs}
             className="px-3 py-1.5 rounded-lg hover:text-white hover:bg-white/5 transition-all"
           >
@@ -88,9 +76,9 @@ export default function Navbar({
           </button>
         </nav>
 
-        {/* Right Controls: Livery selector, Sound toggle, Live speed badge */}
+        {/* Right side controls */}
         <div className="flex items-center gap-2.5 sm:gap-4">
-          {/* Live Speed Badge */}
+          {/* Live speed badge */}
           <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-xl bg-black/40 border border-white/10 font-mono text-xs">
             <Gauge className="w-3.5 h-3.5 text-cyber-lime animate-pulse" />
             <span className="text-zinc-400">SPEED:</span>
@@ -99,7 +87,7 @@ export default function Navbar({
             </span>
           </div>
 
-          {/* Color Livery Customizer */}
+          {/* Color picker */}
           <div className="flex items-center gap-1.5 bg-black/40 p-1 rounded-xl border border-white/10" title="Select Car Livery Color">
             {LIVERIES.map((livery) => (
               <button
@@ -115,29 +103,6 @@ export default function Navbar({
               />
             ))}
           </div>
-
-          {/* Audio V8 Engine Toggle */}
-          <button
-            onClick={toggleSound}
-            className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-mono transition-all border ${
-              soundEnabled
-                ? 'bg-cyber-lime/15 text-cyber-lime border-cyber-lime/40 shadow-[0_0_15px_rgba(69,219,125,0.25)]'
-                : 'bg-black/40 text-zinc-400 border-white/10 hover:text-white hover:bg-white/5'
-            }`}
-            title="Toggle Synthesized Engine Audio"
-          >
-            {soundEnabled ? (
-              <>
-                <Volume2 className="w-3.5 h-3.5 animate-bounce" />
-                <span className="hidden sm:inline font-bold">V8 ON</span>
-              </>
-            ) : (
-              <>
-                <VolumeX className="w-3.5 h-3.5 text-zinc-500" />
-                <span className="hidden sm:inline">SOUND</span>
-              </>
-            )}
-          </button>
         </div>
       </div>
     </header>

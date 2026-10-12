@@ -1,8 +1,8 @@
 import React from 'react';
-import { Gauge, Zap, Wind, Sliders, ShieldCheck } from 'lucide-react';
+import { Gauge, Zap, Wind, Sliders } from 'lucide-react';
 
 export default function SpeedometerHUD({ speed, progress }) {
-  // Compute gear based on speed
+  // Calculate gear based on current speed
   const getGear = (s) => {
     if (s <= 5) return 'N';
     if (s < 45) return '1';
@@ -18,12 +18,12 @@ export default function SpeedometerHUD({ speed, progress }) {
   const gForce = (1.0 + (speed / 212) * 1.8).toFixed(2);
   const downforceKg = Math.round((speed / 212) * 240);
 
-  // Manual scroll jumping helper
+  // Jump scroll position using the slider
   const handleManualScrub = (e) => {
     const val = parseFloat(e.target.value);
     const heroSection = document.getElementById('hero-track');
     if (heroSection) {
-      const scrollDist = 2400; // corresponds to ScrollTrigger end
+      const scrollDist = 2400;
       const topOffset = heroSection.offsetTop;
       window.scrollTo({
         top: topOffset + (val / 100) * scrollDist,
@@ -38,7 +38,7 @@ export default function SpeedometerHUD({ speed, progress }) {
       className="relative z-30 max-w-7xl mx-auto px-4 sm:px-8 py-10"
     >
       <div className="glass-panel rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl bg-black/60">
-        {/* Header bar */}
+        {/* Header */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between pb-6 border-b border-white/10 gap-4">
           <div>
             <div className="flex items-center gap-2">
@@ -52,7 +52,7 @@ export default function SpeedometerHUD({ speed, progress }) {
             </p>
           </div>
 
-          {/* Interactive Scrub Slider for Reviewers */}
+          {/* Manual scrub slider */}
           <div className="flex items-center gap-3 w-full md:w-auto bg-black/40 px-4 py-2 rounded-2xl border border-white/10">
             <Sliders className="w-4 h-4 text-cyber-lime" />
             <div className="flex flex-col">
@@ -72,9 +72,9 @@ export default function SpeedometerHUD({ speed, progress }) {
           </div>
         </div>
 
-        {/* Telemetry Dials & Metrics Grid */}
+        {/* Metrics grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-6">
-          {/* 1. Speedometer */}
+          {/* Speed */}
           <div className="bg-asphalt-900/80 p-5 rounded-2xl border border-white/5 flex flex-col justify-between glass-panel-hover">
             <div className="flex items-center justify-between text-zinc-400 text-xs font-mono">
               <span>VELOCITY</span>
@@ -97,7 +97,7 @@ export default function SpeedometerHUD({ speed, progress }) {
             </div>
           </div>
 
-          {/* 2. RPM Gauge */}
+          {/* RPM */}
           <div className="bg-asphalt-900/80 p-5 rounded-2xl border border-white/5 flex flex-col justify-between glass-panel-hover">
             <div className="flex items-center justify-between text-zinc-400 text-xs font-mono">
               <span>TACHOMETER</span>
@@ -120,7 +120,7 @@ export default function SpeedometerHUD({ speed, progress }) {
             </div>
           </div>
 
-          {/* 3. Gear & G-Force */}
+          {/* Gear and G-force */}
           <div className="bg-asphalt-900/80 p-5 rounded-2xl border border-white/5 flex flex-col justify-between glass-panel-hover">
             <div className="flex items-center justify-between text-zinc-400 text-xs font-mono">
               <span>TRANSMISSION</span>
@@ -152,7 +152,7 @@ export default function SpeedometerHUD({ speed, progress }) {
             </div>
           </div>
 
-          {/* 4. Active Aero Downforce */}
+          {/* Downforce */}
           <div className="bg-asphalt-900/80 p-5 rounded-2xl border border-white/5 flex flex-col justify-between glass-panel-hover">
             <div className="flex items-center justify-between text-zinc-400 text-xs font-mono">
               <span>AERODYNAMICS</span>
@@ -179,3 +179,4 @@ export default function SpeedometerHUD({ speed, progress }) {
     </div>
   );
 }
+

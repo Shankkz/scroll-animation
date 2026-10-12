@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronUp, ExternalLink, Heart, Zap } from 'lucide-react';
+import { ChevronUp, ExternalLink } from 'lucide-react';
 
 export default function Footer() {
   const scrollToTop = () => {
